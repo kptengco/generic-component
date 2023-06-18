@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { firstValueFrom } from "rxjs";
+import { firstValueFrom, of } from "rxjs";
 
 import { DeleteEngineService } from "src/shared";
 
@@ -19,12 +19,12 @@ export abstract class CarService extends DeleteEngineService {
 
     public override async delete(id: string): Promise<void> {
         const apiDeleteUrl: string = this.apiDeleteUrl(id);
-        console.info(id, '------------------- resource id', `API URl: ${apiDeleteUrl}`);
+        console.info(id, '------------------- resource id', `API URL: ${apiDeleteUrl}`);
 
         try {
             // you may call a dialog service here to confirm the deletion before calling the delete API
-
-            await firstValueFrom(this.httpClient.delete(apiDeleteUrl));
+            // this.httpClient.delete(apiDeleteUrl)
+            await firstValueFrom(of(true));
 
             // you may call a notification service here to show a deletion message
         } catch (e) {
